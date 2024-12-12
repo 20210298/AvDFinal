@@ -87,10 +87,7 @@ namespace AvDFinal
                     double time = CalculateTime(distance / 1000);
                     double cost = CalculateCost(distance / 1000);
 
-                    // 출발지 -> 목적지 추가
                     AddEdge(graph, start.Content.ToString(), end.Content.ToString(), distance, time, cost);
-
-                    // 목적지 -> 출발지 추가 (양방향)
                     AddEdge(graph, end.Content.ToString(), start.Content.ToString(), distance, time, cost);
                 }
             }

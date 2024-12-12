@@ -9,28 +9,27 @@ public class CycleSolver
         _graphData = graphData;
     }
 
-    // 시간 기준 사이클 계산
+    // 시간 기준
     public (List<string> Cycle, double TotalDistance, double TotalTime, double TotalCost) CalculateCycleForTime(
         string start, List<string> waypoints, string end)
     {
         return CalculateCycle(start, waypoints, end, edge => edge.Time, "시간");
     }
 
-    // 거리 기준 사이클 계산
+    // 거리 기준
     public (List<string> Cycle, double TotalDistance, double TotalTime, double TotalCost) CalculateCycleForDistance(
         string start, List<string> waypoints, string end)
     {
         return CalculateCycle(start, waypoints, end, edge => edge.Distance, "거리");
     }
 
-    // 비용 기준 사이클 계산
+    // 비용 기준
     public (List<string> Cycle, double TotalDistance, double TotalTime, double TotalCost) CalculateCycleForCost(
         string start, List<string> waypoints, string end)
     {
         return CalculateCycle(start, waypoints, end, edge => edge.Cost, "비용");
     }
 
-    // 공통 로직: 지정된 기준으로 사이클 계산
     private (List<string> Cycle, double TotalDistance, double TotalTime, double TotalCost) CalculateCycle(
         string start,
         List<string> waypoints,
@@ -76,7 +75,7 @@ public class CycleSolver
                     break;
                 }
 
-                // 최적 경로를 기반으로 거리, 시간, 비용 추가 계산
+                // 총 거리, 시간, 비용 계산
                 foreach (var node in segmentPath.Zip(segmentPath.Skip(1)))
                 {
                     var from = node.First;
