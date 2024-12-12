@@ -1,0 +1,67 @@
+﻿<Window x:Class="AvDFinal.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AvDFinal"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Width="1880"
+        Height="850"
+        ResizeMode="NoResize"
+         WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="400" />
+        </Grid.ColumnDefinitions>
+
+        <!-- 왼쪽 -->
+        <Grid Grid.Column="0">
+            <Image Source="image/map.png" Margin="10,0,0,0" />
+
+            <!-- 캔버스 정의 -->
+            <Canvas Name="PathCanvas" Background="Transparent" Margin="10,0,0,0">
+                <!-- 장소 버튼들 -->
+                <Button x:Name="금오랜드" Content="금오랜드" Canvas.Left="538" Canvas.Top="430" Click="OnButtonClick" Canvas.ZIndex="1"  Background="White" BorderBrush="Gray" BorderThickness="1.5" Height="25" Width="60" />
+                <Button x:Name="금오산" Content="금오산" Canvas.Left="469" Canvas.Top="515" Click="OnButtonClick" Canvas.ZIndex="1" Background="White" BorderBrush="Gray" BorderThickness="1.5" Height="25" Width="60"/>
+                <Button x:Name="구미역" Content="구미역" Canvas.Left="597" Canvas.Top="388" RenderTransformOrigin="-0.4,1.004" Click="OnButtonClick" Canvas.ZIndex="1" Background="White" BorderBrush="Gray" BorderThickness="1.5" Height="25" Width="60"/>
+                <Button x:Name="낙동강체육공원" Content="낙동강체육공원" Canvas.Left="676" Canvas.Top="295" Click="OnButtonClick" Canvas.ZIndex="1" Background="White" BorderBrush="Gray" BorderThickness="1.5" Height="25" Width="94" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Button x:Name="유학산" Content="유학산" Canvas.Left="1029" Canvas.Top="586" Click="OnButtonClick" Canvas.ZIndex="1" Background="White" BorderBrush="Gray" BorderThickness="1.5" Height="25" Width="60"/>
+                <Button x:Name="동락공원" Content="동락공원" Canvas.Left="792" Canvas.Top="488" RenderTransformOrigin="-0.365,0.954" Click="OnButtonClick" Canvas.ZIndex="1" Background="White" BorderBrush="Gray" BorderThickness="1.5" Height="25" Width="60"/>
+                <Button x:Name="에코랜드" Content="에코랜드" Canvas.Left="982" Canvas.Top="231" Click="OnButtonClick" Canvas.ZIndex="1" Background="White" BorderBrush="Gray" BorderThickness="1.5" Height="25" Width="60"/>
+                <Button x:Name="천생산" Content="천생산" Canvas.Left="988" Canvas.Top="450" Click="OnButtonClick" Canvas.ZIndex="1" Background="White" BorderBrush="Gray" BorderThickness="1.5" Height="25" Width="60"/>
+                <Button x:Name="구미과학관" Content="구미과학관" Canvas.Left="792" Canvas.Top="450" Click="OnButtonClick" Canvas.ZIndex="1" Background="White" BorderBrush="Gray" BorderThickness="1.5" Height="25" Width="70" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Button x:Name="다온숲" Content="다온숲" Canvas.Left="872" Canvas.Top="378" RenderTransformOrigin="0.025,1.255" Click="OnButtonClick" Canvas.ZIndex="1" Background="White" BorderBrush="Gray" BorderThickness="1.5" Height="25" Width="60"/>
+                <Button x:Name="새마을운동테마공원" Content="새마을운동테마공원" Canvas.Left="629" Canvas.Top="525" Click="OnButtonClick" Canvas.ZIndex="1" Background="White" BorderBrush="Gray" BorderThickness="1.5" Height="25" Width="118" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Button x:Name="김천구미역" Content="김천구미역" Canvas.Left="161" Canvas.Top="439" Click="OnButtonClick" Canvas.ZIndex="1" Background="White" BorderBrush="Gray" BorderThickness="1.5" Height="25" Width="70" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Button x:Name="김천과학관" Content="김천과학관" Canvas.Left="211" Canvas.Top="402" Click="OnButtonClick" Canvas.ZIndex="1" Background="White" BorderBrush="Gray" BorderThickness="1.5" Height="25" Width="75" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Button x:Name="칠곡가산성" Content="칠곡가산성" Canvas.Left="1390" Canvas.Top="714" Click="OnButtonClick" Canvas.ZIndex="1" Background="White" BorderBrush="Gray" BorderThickness="1.5" Height="25" Width="70" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Button x:Name="칠곡양떼목장" Content="칠곡양떼목장" Canvas.Left="1029" Canvas.Top="741" Click="OnButtonClick" Canvas.ZIndex="1" Background="White" BorderBrush="Gray" BorderThickness="1.5" Height="25" Width="81" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Button x:Name="금오공대" Content="금오공대" Canvas.Left="784" Canvas.Top="333" Click="OnButtonClick" Canvas.ZIndex="1" Background="White" BorderBrush="Gray" BorderThickness="1.5" Height="25" Width="60"/>
+            </Canvas>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <!-- 버튼 영역 -->
+                <RowDefinition Height="*" />
+                <!-- 결과 출력 영역 -->
+            </Grid.RowDefinitions>
+
+            <!-- 버튼 영역 -->
+            <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center">
+                <Button x:Name="DijkstraButton" Content="전체 목적지 경로 찾기" Click="OnCalculateGlobalPathClick" Height="40" Width="190" Margin="5" />
+                <Button x:Name="CycleButton" Content="선택한 목적지 경로 찾기" Click="OnCalculateCycleClick" Height="40" Width="190" Margin="5" />
+            </StackPanel>
+
+            <!-- 결과 출력 영역 -->
+            <StackPanel Grid.Row="1" Name="ResultStackPanel" Background="LightGray" Margin="5" Orientation="Vertical">
+                <TextBlock Text="가고 싶은 곳을 선택하세요." FontWeight="Bold" FontSize="16" Margin="5" />
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</Window>
